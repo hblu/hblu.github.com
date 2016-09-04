@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.5. 算法评价标准及分析方法 &#8212; Runestone Interactive Overview</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/livecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/clike.js"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/mchoice.js"></script>
+    <script type="text/javascript" src="../_static/timedmc.js"></script>
+    <script type="text/javascript" src="../_static/timed.js"></script>
+    <script type="text/javascript" src="../_static/clickable.js"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/codelens.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js"></script>
+    <script type="text/javascript" src="../_static/fitb.js"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/livecode.js"></script>
+    <script type="text/javascript" src="../_static/clike.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="../_static/reveal.js"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="top" title="Runestone Interactive Overview" href="../index.html" />
+    <link rel="up" title="1. 引言" href="toctree.html" />
+    <link rel="next" title="1.6. 作业" href="ex1.html" />
+    <link rel="prev" title="1.4. 算法概念及设计方法" href="1.3.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/runestone/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'sitds16';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = true;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'sitds16';
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+  </head>
+  <body role="document">
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../index.html">SIT DS 2015</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHNwYJKoZIhvcNAQcEoIIHKDCCByQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAcrkqh1hn3lYqIpfXxNqe1T82EhXzCJGy1yMAmklpyZshyMkfDGe1Bhx+iwyGeoYRTTyphFmP+9M3NyO0+Q5XdHxgZPx/zYjjBxlZHgEV6jhE8bN2fHkkPf0VHfz0a0QQylQOPlKiOTZV7B37Jpk6yM47oVZ1tG/KNm0NkfmB76DELMAkGBSsOAwIaBQAwgbQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIi0GmFfOlcjuAgZBbYOo9UO+CpMQa+PYqwsUmUnJvXIImeMeNI3KVTUx5Cfk9gNMo3WzPeiB5IqZo9nRAQ0mf1qL2ecLeB5tidM+lgBUhOxfj3/FecpnVFa0263gp4g+PLw8jzhvVRdUon1K3SeO1Rzh23fIRKwnrD6btt73uwtj0sl3tGd8qz+6GIcwPDdRk9VcUffiBJT/ZagKgggOHMIIDgzCCAuygAwIBAgIBADANBgkqhkiG9w0BAQUFADCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wHhcNMDQwMjEzMTAxMzE1WhcNMzUwMjEzMTAxMzE1WjCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMFHTt38RMxLXJyO2SmS+Ndl72T7oKJ4u4uw+6awntALWh03PewmIJuzbALScsTS4sZoS1fKciBGoh11gIfHzylvkdNe/hJl66/RGqrj5rFb08sAABNTzDTiqqNpJeBsYs/c2aiGozptX2RlnBktH+SUNpAajW724Nv2Wvhif6sFAgMBAAGjge4wgeswHQYDVR0OBBYEFJaffLvGbxe9WT9S1wob7BDWZJRrMIG7BgNVHSMEgbMwgbCAFJaffLvGbxe9WT9S1wob7BDWZJRroYGUpIGRMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbYIBADAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBAIFfOlaagFrl71+jq6OKidbWFSE+Q4FqROvdgIONth+8kSK//Y/4ihuE4Ymvzn5ceE3S/iBSQQMjyvb+s2TWbQYDwcp129OPIbD9epdr4tJOUNiSojw7BHwYRiPh58S1xGlFgHFXwrEBb3dgNbMUa+u4qectsMAXpVHnD9wIyfmHMYIBmjCCAZYCAQEwgZQwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tAgEAMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMzExMDMxMzQxMzFaMCMGCSqGSIb3DQEJBDEWBBRDJF8w+zsMr7FSk+pwinB5f5D4rzANBgkqhkiG9w0BAQEFAASBgHw1LMHpkpaqHIvDGdFE0eG+2mZlmMnUeDCBhQlbc7QMzFQYKTV94NfaebBO4PmNdADe1rq4WidSRZZbE7CzkX9IGENYnBTWY0hb2l0lGdGrJdGeWyV3ekg9WVaFMMumrekds96h3Cx7dGz2kWDzIai2iEXE/qoE+xpkyXAYZNV3-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='/runestone/static/sitds16/genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <!-- user account dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='/runestone/default/courses'>Change Course</a></li>
+            <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
+          </ul>
+        </li>
+        <!-- end user account dropdown -->
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/sitds16/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='/runestone/default/reportabug?course=sitds16&page=1.4'>Report A Problem</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">1.5. 算法评价标准及分析方法</a><ul>
+<li><a class="reference internal" href="#id2">1.5.1. 解决同一问题的不同算法</a><ul>
+<li><a class="reference internal" href="#id3">1.5.1.1. 将数字添加到一个列表中</a></li>
+<li><a class="reference internal" href="#id4">1.5.1.2. 考虑斐波那契数列的第 <span class="math">\(n\)</span> 项:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">1.5.2. 算法复杂度的渐近分析</a><ul>
+<li><a class="reference internal" href="#id7">1.5.2.1. 渐近记号</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8">1.5.3. 算法分析</a></li>
+<li><a class="reference internal" href="#id9">1.5.4. 时间、空间权衡</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 1.4. 算法概念及设计方法" data-toggle="tooltip">
+    <a href="1.3.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 1.6. 作业' data-toggle="tooltip" >
+    <a href="ex1.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="id1">
+<h1>1.5. 算法评价标准及分析方法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><div class="math">
+\[1+2+3+\cdots+100 = 5050\]</div>
+<div class="math">
+\[\frac{100\times(1+100)}2 = 5050\]</div>
+</div></blockquote>
+<ul class="simple">
+<li>算法的复杂性是度量算法效率、评价其优劣的重要依据.</li>
+<li>算法分析技术即利用数学工具, 对每一个具体算法讨论其各种复杂度,
+以探讨某种具体算法适用于哪类问题, 或某类问题宜采用哪种算法.</li>
+<li>算法复杂性体现在运行该算法所需要的计算机资源的多少上,
+所需的资源越多表明该算法的复杂性越高. 计算机中最重要的是:<ul>
+<li>时间资源 (时间复杂度)</li>
+<li>空间资源 (空间复杂度)</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id2">
+<h2>1.5.1. 解决同一问题的不同算法<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>1.5.1.1. 将数字添加到一个列表中<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>让我们来做一个小实验, 简单地将一堆数字添加到一个最初为空的列表中,
+然后反转该列表:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">5</span>
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">nums</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>当然我们有另一种思路: 与其到最后才将整个列表反转过来,
+何不在数字出现的时候就将它插到列表头部?</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">5</span>
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="n">nums</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>看上去似乎第二种方法更好, 我们来验证下</strong></p>
+
+<div data-childcomponent="append_fun" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=append_fun data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='对第一种方法进行计时'>
+import time
+start = time.time()
+count = 10**5
+nums = []
+for i in range(count):
+    nums.append(i)
+nums.reverse()
+
+print(time.time()-start)
+</textarea>
+</div>
+
+<div data-childcomponent="insert_fun" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=insert_fun data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='对第二种方法进行计时'>
+import time
+start = time.time()
+count = 10**5
+nums = []
+for i in range(count):
+    nums.insert(0,i)
+
+print(time.time()-start)
+</textarea>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#计算append、insert 操作的运行时间在规模从 10^3 到 10^5 的耗时</span>
+<span class="n">cost_time1</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="o">*</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">nums</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="n">cost_time1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+
+<span class="n">cost_time2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="o">*</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">cost_time2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+
+
+<span class="c1">#加载 matplotlab 相关作图模块</span>
+<span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;FangSong&#39;</span><span class="p">]</span> <span class="c1"># 指定默认字体</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># 解决保存图像是负号&#39;-&#39;显示为方块的问题</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">cost_time1</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;append&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">cost_time2</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;insert&#39;</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">times 10^3$&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Time costs (second)&#39;</span><span class="p">)</span>
+<span class="n">title</span><span class="p">(</span><span class="s1">u&#39;append、insert 操作的运行时间在规模从 $10^3$ 到 $10^5$ 的变化图&#39;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/output_25_1.png" src="../_images/output_25_1.png" />
+</div>
+<div class="section" id="id4">
+<h3>1.5.1.2. 考虑斐波那契数列的第 <span class="math">\(n\)</span> 项:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[\begin{split}\begin{array}{l}
+F_0=F_1=1,\\
+F_n=F_{n-1}+F_{n-2}
+\end{array}\end{split}\]</div>
+<ul class="simple">
+<li>求斐波那契数列的递归算法</li>
+</ul>
+
+<div data-childcomponent="Fib1" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=Fib1 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='求斐波那契数列第n项的递归算法'>
+def fib(n):
+    if n <= 1:
+        return 1
+    else:
+        return fib(n-1)+fib(n-2)
+
+import time
+now = time.time()
+print(fib(20))
+print(time.time()-now)
+</textarea>
+</div>
+<p>将 <span class="math">\(n\)</span> 看做问题的规模, 不难得到计算 <span class="math">\(F_n\)</span> 的时间代价
+(考虑求加法操作的次数) 大致等于</p>
+<div class="math">
+\[\lim_{n\to\infty}F_n=(\frac{\sqrt5+1}2)^n\]</div>
+<p>因此计算 <span class="math">\(F_n\)</span> 的时间代价按 <span class="math">\(n\)</span> 的指数增长. 当
+<span class="math">\(n=100\)</span> 时, 大约为 <span class="math">\(8\times 10^{20}\)</span>.
+如果使用2014年全球运算速度最快计算机&#8221;天河二号&#8221;进行计算 (每秒运算
+33.86千万亿次), 大约需要运算 6.5 小时.</p>
+<ul class="simple">
+<li>求解斐波那契数列的递推算法</li>
+</ul>
+
+<div data-childcomponent="Fib1" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=Fib1 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='求解斐波那契数列的递推算法'>
+def fib(n):
+    a, b = 1, 1
+    for i in range(1,n):
+        a, b = a+b, a
+    return a
+
+import time
+now = time.time()
+print(fib(20))
+print(time.time()-now)
+</textarea>
+</div>
+<p>用这个算法计算 <span class="math">\(F_n\)</span> 的值, 循环前工作只要做一次, 循环需要做
+<span class="math">\(n-1\)</span> 次. 因此总的工作量(基本操作执行次数)与 <span class="math">\(n\)</span> 呈线性关系.</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>1.5.2. 算法复杂度的渐近分析<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>需要注意的是, 算法设计首先要担心的并不是常数级别的性能差异.
+即使相关程序完成任务所需要的时间是另一程序的两倍, 甚至十倍,
+但这样的速度可能依然是够快的.</p>
+<ul class="simple">
+<li>我们并不考虑常数单位上的差距, 这通常取决于编程语言的性能、硬件速度等</li>
+<li>我们重点关注当问题规模扩大时运行时间的增长幅度</li>
+<li>即将焦点集中在解决问题方法中那些独立于具体实现的属性</li>
+</ul>
+<div class="section" id="id7">
+<h3>1.5.2.1. 渐近记号<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="math">
+\[f(n)=n^2+100n+log_{10}n+1000\]</div>
+</div></blockquote>
+<ul>
+<li><p class="first">当数据规模 <span class="math">\(n\)</span> 逐步增大时, <span class="math">\(f(n)\)</span> 的增长趋势
+当n增大到一定值以后, 计算公式中影响最大的就是n的幂次最高的项,
+其他的常数项和低幂次项都可以忽略</p>
+</li>
+<li><p class="first">大 <span class="math">\(O\)</span> 表示法 (上界)</p>
+<ul>
+<li><p class="first">如果存在正数 <span class="math">\(c\)</span> 和 <span class="math">\(n_0\)</span>, 使得对任意 <span class="math">\(n&gt;n_0\)</span>,
+都有 <span class="math">\(f(n)\leq cg(n)\)</span>, 则称</p>
+<div class="math">
+\[f(n)=O(g(n))\]</div>
+</li>
+<li><p class="first">表示函数增长的上界</p>
+</li>
+<li><p class="first">注意: 一个函数增长的上界不唯一</p>
+</li>
+</ul>
+</li>
+<li><p class="first">大 <span class="math">\(\Omega\)</span> 表示法 (下界)</p>
+<ul>
+<li><p class="first">如果存在正数 <span class="math">\(c\)</span> 和 <span class="math">\(n_0\)</span>, 使得对任意 <span class="math">\(n&gt;n_0\)</span>,
+都有 <span class="math">\(f(n)\geq cg(n)\)</span>, 则称</p>
+<div class="math">
+\[f(n)=\Omega(g(n))\]</div>
+</li>
+<li><p class="first">表示函数增长的下界</p>
+</li>
+<li><p class="first">注意: 一个函数增长的下界不唯一</p>
+</li>
+</ul>
+</li>
+<li><p class="first">大 <span class="math">\(\Theta\)</span> 表示法</p>
+<ul>
+<li><p class="first">如果存在正数 <span class="math">\(c_1,c_2\)</span> 和 <span class="math">\(n_0\)</span>, 使得对任意
+<span class="math">\(n&gt;n_0\)</span>, 都有 <span class="math">\(c_1 g(n)\leq f(n)\geq c_2 g(n)\)</span>, 则称</p>
+<div class="math">
+\[f(n)=\Theta(g(n))\]</div>
+</li>
+<li><p class="first">表示函数增长的上、下界相同</p>
+</li>
+</ul>
+</li>
+<li><p class="first">常用渐近复杂度</p>
+<div class="math">
+\[O(1),O(\log n),O(n),O(n\log n),O(n^2),O(n^3),O(2^n),O(n!)\]</div>
+</li>
+</ul>
+<p><strong>思考:</strong></p>
+<ol class="arabic">
+<li><p class="first">对数通常有各自不同的底数, 但在算法分析中, 我们往往并不会在意它.
+为了明白其中的原因, 考虑以下等式</p>
+<div class="math">
+\[\log_b n =\frac{\log_a n}{\log_a b}.\]</div>
+<p>为什么它能告诉我们并不需要操心对数的底数问题?</p>
+</li>
+<li><p class="first">证明任何指数级操作 (<span class="math">\(\Theta(k^n)\)</span>, 其中 <span class="math">\(k&gt;1\)</span>)
+的增长都要快于多项式级操作 (<span class="math">\(\Theta(n^j)\)</span>, 其中 <span class="math">\(j&gt;0\)</span>).</p>
+</li>
+<li><p class="first">证明任何多项式级操作的渐近增长都要快于对数级操作
+(<span class="math">\(\Theta(\log n)\)</span>).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>1.5.3. 算法分析<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>算法分析的目的是推导出算法的复杂度, 其中最主要技术是构造和求解递归方程.</p>
+<ul>
+<li><p class="first">基本循环程序的时间复杂度</p>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>基本操作</dt>
+<dd><p class="first last">认为其时间复杂度为 <span class="math">\(O(1)\)</span>. 如果是函数调用, 应将其时间复杂度带入, 参与整体时间复杂度的计算.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>加法规则 (顺序结构)</dt>
+<dd><p class="first last">如果算法是两个部分的顺序复合, 其复杂性是这两部分的复杂性之和  <span class="math">\(O(T_1(n)+T_2(n))=O(\max(T_1(n),T_2(n)))\)</span></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>乘法规则 (循环结构)</dt>
+<dd><p class="first last">如果算法是一个循环, 循环体将执行 <span class="math">\(T_1(n)\)</span> 次, 每次循环执行需要时间 <span class="math">\(T_2(n)\)</span>, 则总的时间为 <span class="math">\(O(T_1(n)\times T_2(n))\)</span></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>取最大规则 (分支结构)</dt>
+<dd><p class="first last">如果算法是条件分支, 两个分支的时间复杂度分别是 <span class="math">\(T_1(n)\)</span> 和 <span class="math">\(T_2(n)\)</span>, 则有 <span class="math">\(O(\max(T_1(n),T_2(n)))\)</span></p>
+</dd>
+</dl>
+</li>
+</ol>
+</li>
+</ul>
+<p><strong>练习:</strong></p>
+
+<div data-childcomponent="ex1" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ex1 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='逐条执行的语句'>
+n = 10
+num = range(n)
+num.append(1)
+num.insert(0,2)
+</textarea>
+</div>
+
+<div data-childcomponent="ex2" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ex2 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='简单 for 循环'>
+n, s = 10, 0
+for x in range(n):
+    s += x
+</textarea>
+</div>
+
+<div data-childcomponent="ex3" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ex3 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='"内藏式"循环'>
+n = 10
+squares = [x**2 for x in range(n)]
+</textarea>
+</div>
+
+<div data-childcomponent="ex4" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ex4 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='嵌套循环1'>
+n, s = 10, 0
+for x in range(n):
+    for y in range(n):
+        s += x*y
+</textarea>
+</div>
+
+<div data-childcomponent="ex5" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ex5 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='嵌套循环2'>
+n, s = 10, 0
+for x in range(n):
+    for y in range(n):
+        s += x*y
+    for z in range(n):
+        for w in range(n):
+            s += x-w
+</textarea>
+</div>
+
+<div data-childcomponent="ex6" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ex6 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='求两个 n*n 矩阵 m1 和 m2 的乘积'>
+def multi(m1, m2):
+    n = len(m1)
+    m = []
+    for i in range(n):
+        m.append([0]*n)
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                m[i][j] += m1[i][k]*m2[k][j]
+    return m
+
+m = [[1,2],[3,4]]
+print(multi(m, m))
+</textarea>
+</div>
+<ul>
+<li><p class="first">递归算法的时间复杂度 递归算法通常具有如下的算法模式:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">g</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">somework</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">somework</span>
+<span class="n">somework</span>
+</pre></div>
+</div>
+<p>也就是说, <span class="math">\(n=0\)</span> 时直接得到结果, 否则将原问题归结为 <span class="math">\(a\)</span>
+个规模为 <span class="math">\(n/b\)</span> 的子问题, 其中 <span class="math">\(a,b\)</span>
+是由具体问题决定的两个常数. 另外, 在本层递归中还需要做一些工作, 即
+<code class="docutils literal"><span class="pre">somework</span></code>, 其时间复杂度可能与 <span class="math">\(n\)</span> 有关, 设为 <span class="math">\(O(n^k)\)</span>.
+这样就得到了递归方程:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}T(n)=O(n^k)+a\times T(n/b)\\有如下结论:\end{aligned}\end{align} \]</div>
+<ul class="simple">
+<li>如果 <span class="math">\(a&gt;b^k\)</span>, 则 <span class="math">\(T(n)=O(n^{\log_ba})\)</span></li>
+<li>如果 <span class="math">\(a=b^k\)</span>, 则 <span class="math">\(T(n)=O(n^k\log n)\)</span></li>
+<li>如果 <span class="math">\(a&lt;b^k\)</span>, 则 <span class="math">\(T(n)=O(n^k)\)</span></li>
+</ul>
+</li>
+</ul>
+
+<div data-childcomponent="mergesort" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=mergesort data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='排序算法之:归并排序'>
+def mergesort(seq):
+    mid = len(seq)//2
+    left, right = seq[:mid], seq[mid:]
+    if len(left) > 1:
+        left = mergesort(left)
+    if len(right) > 1:
+        right = mergesort(right)
+    res = []
+    while left and right:
+        if left [-1] >= right [-1]:
+            res.append(left.pop())
+        else:
+            res.append(right.pop())
+    res.reverse()
+    return (left or right) + res
+
+L = [1,2,5,4,3]
+print(mergesort(L))
+</textarea>
+</div>
+<p><strong>思考:</strong> 在上面的算法中, 元素是从序列每一半的尾端弹出 (<code class="docutils literal"><span class="pre">pop()</span></code>) 的.
+或许选择从首端弹出 (<code class="docutils literal"><span class="pre">pop(0)</span></code>)会更直观一点, 避免我们要对 <code class="docutils literal"><span class="pre">res</span></code>
+进行反向处理 (<code class="docutils literal"><span class="pre">res.reverse()</span></code>). 但注意 <code class="docutils literal"><span class="pre">pop(0)</span></code> 和 <code class="docutils literal"><span class="pre">insert(0)</span></code>
+一样, 是一个线性级操作, 而 <code class="docutils literal"><span class="pre">pop()</span></code> 是常数级的.
+那么这种调整对会对整体运行时间产生什么影响呢?</p>
+<ul>
+<li><dl class="first docutils">
+<dt>三种重要情况</dt>
+<dd><p class="first last">到目前为止, 我们所设想的运行时间都是完全确定的, 并且只取决于输入的规模, 而与输入的实际内容无关. 但这显然不是特别现实. 例如, 如果想要构造一个排序算法, 我们或许会这样开始:</p>
+</dd>
+</dl>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sort</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#如果for循环没有被break语句提前中止, 则执行 else 分支</span>
+    <span class="k">if</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">break</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span>
+<span class="o">...</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>这意味着无论我们的主排序算法效率有多低, 只要遇到一个已经排序的序列, 则其运行时间始终是线性级别的. 而在一般情况下是没有排序算法能达到线性级运行时间的.</p>
+<ul class="simple">
+<li>最好情况: 当算法遇上最理想输入时的运行时间.</li>
+<li>最坏情况: 可能会遇上的最糟糕的运行时间, 这通常也是最有用的情况.</li>
+<li>平均情况: 最复杂的一种情况, 大部分时间里会回避对这种情况的讨论.</li>
+</ul>
+</li>
+</ul>
+
+<div data-childcomponent="gnomesort" class="explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=gnomesort data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='排序算法之: 侏儒排序'>
+def gnomesort(seq):
+    i = 0
+    while i < len(seq):
+        if i == 0 or seq[i-1] <= seq[i]:
+            i += 1
+        else:
+            seq[i], seq[i-1] = seq[i-1], seq[i]
+            i -= 1
+
+L = [1,2,5,4,3]
+gnomesort(L)
+print(L)
+</textarea>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>1.5.4. 时间、空间权衡<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>数据结构<ul>
+<li>一定的空间来存储它的每一个数据项</li>
+<li>一定的时间来执行每一个操作</li>
+</ul>
+</li>
+<li>代价和效益<ul>
+<li>空间和时间的限制</li>
+<li>增大空间开销可能改善算法的时间开销</li>
+<li>想要节省空间, 往往需要增大运行时间</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 1.4. 算法概念及设计方法' data-toggle="tooltip">
+    <a href="1.3.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="1.3.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 1.6. 作业' data-toggle="tooltip" >
+    <a href="ex1.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="ex1.html" >Next Section - 1.6. 作业</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span>
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015 hblu.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.6.
+    </p>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,435 @@
+算法评价标准及分析方法
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    .. math:: 1+2+3+\cdots+100 = 5050
+
+    .. math:: \frac{100\times(1+100)}2 = 5050
+
+-  算法的复杂性是度量算法效率、评价其优劣的重要依据.
+-  算法分析技术即利用数学工具, 对每一个具体算法讨论其各种复杂度,
+   以探讨某种具体算法适用于哪类问题, 或某类问题宜采用哪种算法.
+-  算法复杂性体现在运行该算法所需要的计算机资源的多少上,
+   所需的资源越多表明该算法的复杂性越高. 计算机中最重要的是:
+
+   -  时间资源 (时间复杂度)
+   -  空间资源 (空间复杂度)
+
+解决同一问题的不同算法
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+将数字添加到一个列表中
+''''''''''''''''''''''''''''
+
+让我们来做一个小实验, 简单地将一堆数字添加到一个最初为空的列表中,
+然后反转该列表:
+
+::
+
+   count = 10**5
+   nums = []
+   for i in range(count):
+       nums.append(i)
+   nums.reverse()
+
+当然我们有另一种思路: 与其到最后才将整个列表反转过来,
+何不在数字出现的时候就将它插到列表头部?
+
+::
+
+   count = 10**5
+   nums = []
+   for i in range(count):
+       nums.insert(0,i)
+
+**看上去似乎第二种方法更好, 我们来验证下**
+
+.. activecode:: append_fun
+   :caption: 对第一种方法进行计时
+
+   import time 
+   start = time.time()
+   count = 10**5
+   nums = []
+   for i in range(count):
+       nums.append(i)
+   nums.reverse()
+    
+   print(time.time()-start)
+
+    
+
+.. activecode:: insert_fun
+   :caption: 对第二种方法进行计时
+
+   import time
+   start = time.time() 
+   count = 10**5
+   nums = []
+   for i in range(count):
+       nums.insert(0,i)
+    
+   print(time.time()-start)
+
+
+  
+::
+
+    #计算append、insert 操作的运行时间在规模从 10^3 到 10^5 的耗时
+    cost_time1 = []
+    for count in range(1, 101):
+        start = time.time()
+        nums = []
+        for i in range(count*1000):
+            nums.append(i)
+        nums.reverse()
+        cost_time1.append(time.time()-start)
+     
+    cost_time2 = []
+    for count in range(1, 101):
+        start = time.time()
+        nums = []
+        for i in range(count*1000):
+            nums.insert(0,i)
+        cost_time2.append(time.time()-start)
+
+
+    #加载 matplotlab 相关作图模块
+    %pylab inline 
+       
+    mpl.rcParams['font.sans-serif'] = ['FangSong'] # 指定默认字体
+    mpl.rcParams['axes.unicode_minus'] = False # 解决保存图像是负号'-'显示为方块的问题
+
+    plot(cost_time1, label = 'append')
+    plot(cost_time2, label = 'insert')
+    xlabel('$\\times 10^3$')
+    ylabel('Time costs (second)')
+    title(u'append、insert 操作的运行时间在规模从 $10^3$ 到 $10^5$ 的变化图')
+    legend()
+
+
+.. image:: output_25_1.png
+
+
+考虑斐波那契数列的第 :math:`n` 项:
+''''''''''''''''''''''''''''''''''''''''
+
+.. math::
+
+
+   \begin{array}{l}
+   F_0=F_1=1,\\
+   F_n=F_{n-1}+F_{n-2}
+   \end{array}
+
+-  求斐波那契数列的递归算法
+
+.. activecode:: Fib1
+   :caption: 求斐波那契数列第n项的递归算法
+
+   def fib(n):
+       if n <= 1:
+           return 1
+       else:
+           return fib(n-1)+fib(n-2)
+   
+   import time
+   now = time.time()
+   print(fib(20))
+   print(time.time()-now)
+
+将 :math:`n` 看做问题的规模, 不难得到计算 :math:`F_n` 的时间代价
+(考虑求加法操作的次数) 大致等于
+
+.. math::
+
+
+   \lim_{n\to\infty}F_n=(\frac{\sqrt5+1}2)^n
+
+因此计算 :math:`F_n` 的时间代价按 :math:`n` 的指数增长. 当
+:math:`n=100` 时, 大约为 :math:`8\times 10^{20}`.
+如果使用2014年全球运算速度最快计算机"天河二号"进行计算 (每秒运算
+33.86千万亿次), 大约需要运算 6.5 小时.
+
+-  求解斐波那契数列的递推算法
+
+.. activecode:: Fib1
+   :caption: 求解斐波那契数列的递推算法
+
+   def fib(n):
+       a, b = 1, 1
+       for i in range(1,n):
+           a, b = a+b, a
+       return a
+
+   import time
+   now = time.time()
+   print(fib(20))
+   print(time.time()-now)
+
+
+用这个算法计算 :math:`F_n` 的值, 循环前工作只要做一次, 循环需要做
+:math:`n-1` 次. 因此总的工作量(基本操作执行次数)与 :math:`n` 呈线性关系.
+
+算法复杂度的渐近分析
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+需要注意的是, 算法设计首先要担心的并不是常数级别的性能差异.
+即使相关程序完成任务所需要的时间是另一程序的两倍, 甚至十倍,
+但这样的速度可能依然是够快的.
+
+-  我们并不考虑常数单位上的差距, 这通常取决于编程语言的性能、硬件速度等
+-  我们重点关注当问题规模扩大时运行时间的增长幅度
+-  即将焦点集中在解决问题方法中那些独立于具体实现的属性
+
+渐近记号
+''''''''
+
+    .. math:: f(n)=n^2+100n+log_{10}n+1000
+
+-  当数据规模 :math:`n` 逐步增大时, :math:`f(n)` 的增长趋势
+   当n增大到一定值以后, 计算公式中影响最大的就是n的幂次最高的项,
+   其他的常数项和低幂次项都可以忽略
+
+-  大 :math:`O` 表示法 (上界)
+
+   -  如果存在正数 :math:`c` 和 :math:`n_0`, 使得对任意 :math:`n>n_0`,
+      都有 :math:`f(n)\leq cg(n)`, 则称
+
+      .. math:: f(n)=O(g(n))
+
+   -  表示函数增长的上界
+   -  注意: 一个函数增长的上界不唯一
+
+-  大 :math:`\Omega` 表示法 (下界)
+
+   -  如果存在正数 :math:`c` 和 :math:`n_0`, 使得对任意 :math:`n>n_0`,
+      都有 :math:`f(n)\geq cg(n)`, 则称
+
+      .. math:: f(n)=\Omega(g(n))
+
+   -  表示函数增长的下界
+   -  注意: 一个函数增长的下界不唯一
+
+-  大 :math:`\Theta` 表示法
+
+   -  如果存在正数 :math:`c_1,c_2` 和 :math:`n_0`, 使得对任意
+      :math:`n>n_0`, 都有 :math:`c_1 g(n)\leq f(n)\geq c_2 g(n)`, 则称
+
+      .. math:: f(n)=\Theta(g(n))
+
+   -  表示函数增长的上、下界相同
+    
+
+-  常用渐近复杂度
+
+   .. math::
+
+
+      O(1),O(\log n),O(n),O(n\log n),O(n^2),O(n^3),O(2^n),O(n!)
+
+**思考:**
+
+1. 对数通常有各自不同的底数, 但在算法分析中, 我们往往并不会在意它.
+   为了明白其中的原因, 考虑以下等式\ 
+
+   .. math:: \log_b n =\frac{\log_a n}{\log_a b}.
+
+   为什么它能告诉我们并不需要操心对数的底数问题?
+
+2. 证明任何指数级操作 (:math:`\Theta(k^n)`, 其中 :math:`k>1`)
+   的增长都要快于多项式级操作 (:math:`\Theta(n^j)`, 其中 :math:`j>0`).
+
+3. 证明任何多项式级操作的渐近增长都要快于对数级操作
+   (:math:`\Theta(\log n)`).
+
+算法分析
+^^^^^^^^^^^^
+
+算法分析的目的是推导出算法的复杂度, 其中最主要技术是构造和求解递归方程.
+
+- 基本循环程序的时间复杂度 
+
+  1. 基本操作
+      认为其时间复杂度为 :math:`O(1)`. 如果是函数调用, 应将其时间复杂度带入, 参与整体时间复杂度的计算. 
+  
+  2. 加法规则 (顺序结构)
+      如果算法是两个部分的顺序复合, 其复杂性是这两部分的复杂性之和  :math:`O(T_1(n)+T_2(n))=O(\max(T_1(n),T_2(n)))`
+
+  3. 乘法规则 (循环结构)
+      如果算法是一个循环, 循环体将执行 :math:`T_1(n)` 次, 每次循环执行需要时间 :math:`T_2(n)`, 则总的时间为 :math:`O(T_1(n)\times T_2(n))`
+  
+  4. 取最大规则 (分支结构)
+      如果算法是条件分支, 两个分支的时间复杂度分别是 :math:`T_1(n)` 和 :math:`T_2(n)`, 则有 :math:`O(\max(T_1(n),T_2(n)))`
+
+
+**练习:**
+
+.. activecode:: ex1
+   :caption: 逐条执行的语句
+
+   n = 10
+   num = range(n)
+   num.append(1)
+   num.insert(0,2)
+
+
+
+.. activecode:: ex2
+   :caption: 简单 for 循环
+    
+   n, s = 10, 0
+   for x in range(n):
+       s += x
+        
+.. activecode:: ex3
+   :caption: "内藏式"循环
+    
+   n = 10
+   squares = [x**2 for x in range(n)]    
+
+.. activecode:: ex4
+   :caption: 嵌套循环1
+    
+   n, s = 10, 0
+   for x in range(n):
+       for y in range(n):
+           s += x*y
+
+.. activecode:: ex5
+   :caption: 嵌套循环2
+    
+   n, s = 10, 0
+   for x in range(n):
+       for y in range(n):
+           s += x*y
+       for z in range(n):
+           for w in range(n):
+               s += x-w
+
+.. activecode:: ex6
+   :caption: 求两个 n*n 矩阵 m1 和 m2 的乘积
+   
+   def multi(m1, m2):
+       n = len(m1)
+       m = []
+       for i in range(n):
+           m.append([0]*n)
+       for i in range(n):
+           for j in range(n):
+               for k in range(n):
+                   m[i][j] += m1[i][k]*m2[k][j]     
+       return m
+
+   m = [[1,2],[3,4]]
+   print(multi(m, m))
+
+
+-  递归算法的时间复杂度 递归算法通常具有如下的算法模式:
+
+   .. code:: python
+
+       def fun(n):
+       if n == 0:
+           return g(...)
+       somework
+       for i in range(a):
+           x = fun(n/b)
+           somework
+       somework
+
+   也就是说, :math:`n=0` 时直接得到结果, 否则将原问题归结为 :math:`a`
+   个规模为 :math:`n/b` 的子问题, 其中 :math:`a,b`
+   是由具体问题决定的两个常数. 另外, 在本层递归中还需要做一些工作, 即
+   ``somework``, 其时间复杂度可能与 :math:`n` 有关, 设为 :math:`O(n^k)`.
+   这样就得到了递归方程:
+
+   .. math:: T(n)=O(n^k)+a\times T(n/b)
+
+    有如下结论:
+
+   -  如果 :math:`a>b^k`, 则 :math:`T(n)=O(n^{\log_ba})`
+   -  如果 :math:`a=b^k`, 则 :math:`T(n)=O(n^k\log n)`
+   -  如果 :math:`a<b^k`, 则 :math:`T(n)=O(n^k)`
+
+.. activecode:: mergesort
+   :caption: 排序算法之:归并排序
+
+   def mergesort(seq):
+       mid = len(seq)//2
+       left, right = seq[:mid], seq[mid:]
+       if len(left) > 1:
+           left = mergesort(left)
+       if len(right) > 1:
+           right = mergesort(right)
+       res = []
+       while left and right:
+           if left [-1] >= right [-1]:
+               res.append(left.pop())
+           else:
+               res.append(right.pop())
+       res.reverse()
+       return (left or right) + res
+   
+   L = [1,2,5,4,3]
+   print(mergesort(L))
+
+
+**思考:** 在上面的算法中, 元素是从序列每一半的尾端弹出 (``pop()``) 的.
+或许选择从首端弹出 (``pop(0)``)会更直观一点, 避免我们要对 ``res``
+进行反向处理 (``res.reverse()``). 但注意 ``pop(0)`` 和 ``insert(0)``
+一样, 是一个线性级操作, 而 ``pop()`` 是常数级的.
+那么这种调整对会对整体运行时间产生什么影响呢?
+
+-  三种重要情况 
+    到目前为止, 我们所设想的运行时间都是完全确定的, 并且只取决于输入的规模, 而与输入的实际内容无关. 但这显然不是特别现实. 例如, 如果想要构造一个排序算法, 我们或许会这样开始:
+
+   .. code:: python
+
+       def sort(seq):
+       n = len(seq)
+       for i in range(n-1) #如果for循环没有被break语句提前中止, 则执行 else 分支
+           if seq[i] > seq[i+1]:
+               break
+       else:
+           return
+       ...
+       ...
+
+  
+
+   这意味着无论我们的主排序算法效率有多低, 只要遇到一个已经排序的序列, 则其运行时间始终是线性级别的. 而在一般情况下是没有排序算法能达到线性级运行时间的. 
+
+   -  最好情况: 当算法遇上最理想输入时的运行时间.
+   -  最坏情况: 可能会遇上的最糟糕的运行时间, 这通常也是最有用的情况.
+   -  平均情况: 最复杂的一种情况, 大部分时间里会回避对这种情况的讨论.
+
+.. activecode:: gnomesort
+   :caption: 排序算法之: 侏儒排序
+
+   def gnomesort(seq):
+       i = 0
+       while i < len(seq):
+           if i == 0 or seq[i-1] <= seq[i]:
+               i += 1
+           else:
+               seq[i], seq[i-1] = seq[i-1], seq[i]
+               i -= 1
+
+   L = [1,2,5,4,3]
+   gnomesort(L)
+   print(L)
+
+时间、空间权衡
+^^^^^^^^^^^^^^^^^^
+
+-  数据结构
+
+   -  一定的空间来存储它的每一个数据项
+   -  一定的时间来执行每一个操作
+
+-  代价和效益
+
+   -  空间和时间的限制
+   -  增大空间开销可能改善算法的时间开销
+   -  想要节省空间, 往往需要增大运行时间
+
